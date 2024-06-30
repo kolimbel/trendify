@@ -14,3 +14,11 @@ To install the necessary dependencies, run:
 
 ```bash
 pip install -r requirements.tx
+```
+
+## TODO
+- [ ] logger
+- [ ] external services parametrization
+- [ ] external services healthcheck
+- [ ] handling pagination with announcements
+- [ ] handling single announcement
