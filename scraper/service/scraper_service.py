@@ -1,12 +1,15 @@
 import requests
+
+from scraper.data.config import Config
 from scraper.model.scraper_data_dto import ScraperDataDto
 
 
 class ScraperService:
+    def __init__(self, config: Config):
+        self._host = config.BACKEND_HOST
 
-    @staticmethod
-    def send_to_api(dto: ScraperDataDto):
-        url = "http://localhost:8080/api/v1/scraper/data-test"
+    def send_to_api(self, dto: ScraperDataDto):
+        url = f"{self._host}/api/v1/scraper/data-test"
         headers = {
             "Content-Type": "application/json"
         }
