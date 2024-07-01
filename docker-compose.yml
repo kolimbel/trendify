@@ -57,9 +57,28 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - ${REDIS_PORT}:6379
+    command: redis-server --save 600 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: [
+        "CMD",
+        "redis-cli", "--raw", "incr", "ping"
+      ]
+      interval: 20s
+      timeout: 10s
+      retries: 120
+
 
 volumes:
   esdata01:
     driver: local
   kibanadata:
+    driver: local
+  redis:
     driver: local
