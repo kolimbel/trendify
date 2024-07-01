@@ -7,6 +7,8 @@ from scraper.model.land_dto import LandDto
 from scraper.model.scraper_data_dto import ScraperDataDto
 
 
+__service_name = "service1"
+
 def map_service1_to_dto(raw_data: Dict[str, Any]) -> ScraperDataDto:
     property_type = raw_data.get("property_type")
     if property_type == "house":
@@ -16,7 +18,9 @@ def map_service1_to_dto(raw_data: Dict[str, Any]) -> ScraperDataDto:
             price=raw_data.get("price"),
             num_rooms=raw_data.get("num_rooms"),
             garden_size=raw_data.get("garden_size"),
-            type=PropertyType.HOUSE
+            type=PropertyType.HOUSE,
+            external_id=raw_data.get("external_id"),
+            source=__service_name
         )
     elif property_type == "apartment":
         property_data = ApartmentDto(
@@ -25,7 +29,9 @@ def map_service1_to_dto(raw_data: Dict[str, Any]) -> ScraperDataDto:
             price=raw_data.get("price"),
             floor=raw_data.get("floor"),
             balcony=raw_data.get("balcony"),
-            type=PropertyType.APARTMENT
+            type=PropertyType.APARTMENT,
+            external_id=raw_data.get("external_id"),
+            source=__service_name
         )
     elif property_type == "land":
         property_data = LandDto(
@@ -34,7 +40,9 @@ def map_service1_to_dto(raw_data: Dict[str, Any]) -> ScraperDataDto:
             price=raw_data.get("price"),
             area=raw_data.get("area"),
             buildable=raw_data.get("buildable"),
-            type=PropertyType.LAND
+            type=PropertyType.LAND,
+            external_id=raw_data.get("external_id"),
+            source=__service_name
         )
     else:
         raise ValueError(f"Unknown property type: {property_type}")

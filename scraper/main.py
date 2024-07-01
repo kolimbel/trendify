@@ -12,6 +12,7 @@ class Main:
     def mock_fetch_raw_data(source: str) -> dict:
         if source == "service1":
             return {
+                "external_id": 123,
                 "property_type": "house",
                 "title": "Beautiful House",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
